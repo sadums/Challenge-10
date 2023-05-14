@@ -1,12 +1,11 @@
 // Packages
-const { response } = require('express');
 const inquirer = require('inquirer');
 
 
-const main = [
+const firstQuestion = [
     {
         type: "list",
-        name: "main",
+        name: "answer",
         message: "What would you like to do?",
         choices: [
             "Edit Employees",
@@ -18,60 +17,77 @@ const main = [
     }
 ];
 
-const employees = [
-    {
-        type: "list",
-        name: "answer",
-        message: "Editing Employees...\nWhat would you like to do?",
-        choices: [
-            "Add an Employee",
-            "View Employees",
-            "Update an Employee",
-            "Delete an Employee",
-            "Return"
-        ]      
+const generateQuestion = function(sectionName){
+    let section = [
+        {
+            type: "list",
+            name: "answer",
+            message: `Editing ${sectionName}...\nWhat would you like to do?`,
+            choices: [
+                `Add an ${sectionName.slice(0, -1)}`,
+                `View ${sectionName}`,
+                `Update an ${sectionName.slice(0, -1)}`,
+                `Delete an ${sectionName.slice(0, -1)}`,
+                "Return"
+            ]      
+        }
+    ];
+    return section;
+}
+
+
+const createRequest = (sectionName) => {
+
+}
+const readRequest = (sectionName) => {
+
+}
+const updateRequest = (sectionName, id) => {
+
+}
+const deleteRequest = (sectionName, id) => {
+
+}
+
+
+const generateQuestionQuestions = (response, sectionName) => {
+    switch(response.answer){
+        case `Add an ${sectionName.slice(0, -1)}`:
+            console.log(sectionName + " CREATE");
+            createRequest(sectionName);
+            break;
+        case `View ${sectionName}`:
+            console.log(sectionName + " READ");
+            readRequest(sectionName);
+            break;
+        case `Update an ${sectionName.slice(0, -1)}`:
+            console.log(sectionName + " UPDATE");
+            updateRequest(sectionName);
+            break;
+        case `Delete an ${sectionName.slice(0, -1)}`:
+            console.log(sectionName + " DELETE");
+            deleteRequest(sectionName);
+            break;
+        case "Return":
+            startQuestion();
+            break;
     }
-]
-const roles = [
-    {
-        type: "list",
-        name: "answer",
-        message: "Editing Roles...\nWhat would you like to do?",
-        choices: [
-            "Add a Role",
-            "View Roles",
-            "Update a Role",
-            "Delete a Role",
-            "Return"
-        ]      
-    }
-]
-const departments = [
-    {
-        type: "list",
-        name: "answer",
-        message: "Editing Departments...\nWhat would you like to do?",
-        choices: [
-            "Add a Department",
-            "View Departments",
-            "Update a Department",
-            "Delete a Department",
-            "Return"
-        ]      
-    }
-]
+}
+
+
+
 
 function startQuestion(){
-    inquirer.prompt(main).then((response) => {
-        switch(response.main){
+    inquirer.prompt(firstQuestion).then((response) => {
+        switch(response.answer){
             case "Edit Employees":
-                inquirer.prompt(employees).then((response) => console.log(response));
+                inquirer.prompt(generateQuestion("Employees")).then((response) => generateQuestionQuestions(response, "Employees"));
                 break;
             case "Edit Roles":
-                inquirer.prompt(roles).then((response) => console.log(response));
+                inquirer.prompt(generateQuestion("Roles")).then((response) => generateQuestionQuestions(response, "Roles"));
                 break;
             case "Edit Departments":
-                inquirer.prompt(departments).then((response) => console.log(response));
+                inquirer.prompt(generateQuestion("Departments")).then((response) => generateQuestionQuestions(response, "Departments"));
                 break;
             case "Clear Terminal":
                 console.clear();
