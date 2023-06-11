@@ -113,7 +113,7 @@ const updateEmployeeRole = function(){
         const employeeObj = {};
         result.forEach((employee) => {
             employeeNames.push(employee.name);
-            employee[employee.name] = employee.id
+            employeeObj[employee.name] = employee.id
         });
         let sqlQuery = `SELECT * FROM role`;
         let params = [];
