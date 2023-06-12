@@ -58,6 +58,10 @@ Choose this option to add a new department to the database. You will be prompted
 
 Selecting this option will exit the application.
 
+
+
+**For a video walkthrough click [here](https://drive.google.com/file/d/1cE74DIheOA6uzIIJ45okqNdg9lYdPb4X/view "drive.google.com")**
+
 ## Dependencies
 
 The Employee Manager application relies on the following dependencies:
@@ -76,4 +80,3 @@ Contributions to the Employee Manager application are welcome! If you find any b
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 This project is under the MIT License
-
