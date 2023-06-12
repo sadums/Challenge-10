@@ -3,6 +3,14 @@ const inquirer = require('inquirer');
 const db = require('./config');
 
 
+console.log(`
+====================================================
+
+                   Employee Manager
+
+====================================================
+`)
+
 
 const promptQuestions = [
     {
